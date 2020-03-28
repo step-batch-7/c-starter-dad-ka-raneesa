@@ -7,10 +7,12 @@ long int square(int);
 long int cube(int);
 int gcd(int, int);
 int lcm(int, int);
-float simple_interest(float, int, float);
-double compound_interest(float, int, float);
-float fahrenheit_to_centigrade(float);
-float centigrade_to_fahrenheit(float);
+double simple_interest(double, int, double);
+double compound_interest(double, int, double);
+double fahrenheit_to_centigrade(double);
+double centigrade_to_fahrenheit(double);
+double get_greatest(double, double);
+double greatest_of_three(double, double, double);
 
 unsigned char is_even(int number)
 {
@@ -44,29 +46,37 @@ int lcm(int num1, int num2)
   return num1 * num2 / gcd(num1, num2);
 }
 
-float simple_interest(float p, int n, float r)
+double simple_interest(double p, int n, double r)
 {
   return (p * n * r) / 100;
 }
 
-double compound_interest(float p, int n, float r){
+double compound_interest(double p, int n, double r){
   return p* (pow((1+r/100),n)); 
 }
 
-float fahrenheit_to_centigrade(float temperature)
+double fahrenheit_to_centigrade(double temperature)
 {
   return ((temperature - 32) * 5) / 9;
 }
 
-float centigrade_to_fahrenheit(float temperature)
+double centigrade_to_fahrenheit(double temperature)
 {
   return (temperature * 9 / 5) + 32;
+}
+
+double get_greatest(double num1, double num2) {
+  return num1 > num2 ? num1 : num2;
+}
+
+double greatest_of_three(double num1, double num2, double num3) {
+  return get_greatest(get_greatest(num1, num2), num3);
 }
 
 int main(void)
 {
   int num1, num2, num3, time;
-  float principle, rate, temperature;
+  double num4, num5, num6, principle, rate, temperature;
   printf("Enter a number :\n");
   scanf("%d", &num1);
   printf("%d is %s\n", num1, is_even(num1) ? "even" : "not even");
@@ -78,13 +88,16 @@ int main(void)
   printf("G.C.D. of %d and %d is %d \n", num2, num3, gcd(num2, num3));
   printf("L.C.M. of %d and %d is %d \n", num2, num3, lcm(num2, num3));
   printf("\nEnter the principle amount,number of years, rate of interest to calculate simple and compound interest :\n");
-  scanf("%f %d %f", &principle, &time, &rate);
-  printf("Simple interest is %f \n", simple_interest(principle, time, rate));
+  scanf("%lf %d %lf", &principle, &time, &rate);
+  printf("Simple interest is %lf \n", simple_interest(principle, time, rate));
   printf("Compound interest is %lf \n", compound_interest(principle, time, rate));
   printf("Enter fahrenheit temperature to convert into centigrade :\n");
-  scanf("%f", &temperature);
-  printf("Centigrade of %f fahrenheit is %f\n", temperature, fahrenheit_to_centigrade(temperature));
+  scanf("%lf", &temperature);
+  printf("Centigrade of %f fahrenheit is %5.2lf\n", temperature, fahrenheit_to_centigrade(temperature));
   printf("Enter centigrade temperature to convert into fahrenheit :\n");
-  scanf("%f", &temperature);
-  printf("fahrenheit of %f centigrade is %f\n", temperature, centigrade_to_fahrenheit(temperature));
+  scanf("%lf", &temperature);
+  printf("fahrenheit of %f centigrade is %5.2lf\n", temperature, centigrade_to_fahrenheit(temperature));
+  printf("Enter three numbers to calculate greatest number :\n");
+  scanf("%lf %lf %lf", &num4, &num5, &num6);
+  printf("%lf is the greatest of %lf, %lf and %lf",greatest_of_three(num4, num5, num6), num4, num5, num6);
 }
