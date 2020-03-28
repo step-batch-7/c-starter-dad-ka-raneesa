@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <math.h>
 
 unsigned char is_even(int);
 unsigned char is_odd(int);
@@ -6,7 +7,8 @@ long int square(int);
 long int cube(int);
 int gcd(int, int);
 int lcm(int, int);
-float simple_interest(long int, int, float);
+float simple_interest(float, int, float);
+double compound_interest(float, int, float);
 
 unsigned char is_even(int number)
 {
@@ -40,15 +42,19 @@ int lcm(int num1, int num2)
   return num1 * num2 / gcd(num1, num2);
 }
 
-float simple_interest(long int p, int n, float r)
+float simple_interest(float p, int n, float r)
 {
   return (p * n * r) / 100;
+}
+
+double compound_interest(float p, int n, float r){
+  return p* (pow((1+r/100),n)); 
 }
 
 int main(void)
 {
   int num1, num2, num3, time;
-  long int principle;
+  float principle;
   float rate;
   printf("Enter a number :\n");
   scanf("%d", &num1);
@@ -60,7 +66,8 @@ int main(void)
   scanf("%d %d", &num2, &num3);
   printf("G.C.D. of %d and %d is %d \n", num2, num3, gcd(num2, num3));
   printf("L.C.M. of %d and %d is %d \n", num2, num3, lcm(num2, num3));
-  printf("\nEnter the principle amount,number of years, rate of interest to calculate simple interest :\n");
-  scanf("%lu %d %f", &principle, &time, &rate);
+  printf("\nEnter the principle amount,number of years, rate of interest to calculate simple and compound interest :\n");
+  scanf("%f %d %f", &principle, &time, &rate);
   printf("Simple interest is %f \n", simple_interest(principle, time, rate));
+  printf("Compound interest is %lf \n", compound_interest(principle, time, rate));
 }
