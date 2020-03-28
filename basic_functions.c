@@ -4,6 +4,8 @@ unsigned char is_even(int);
 unsigned char is_odd(int);
 long int square(int);
 long int cube(int);
+int gcd(int, int);
+int lcm(int, int);
 
 unsigned char is_even(int number)
 {
@@ -32,6 +34,11 @@ int gcd(int num1, int num2)
   return gcd(num2, num1 % num2);
 }
 
+int lcm(int num1, int num2)
+{
+  return num1 * num2 / gcd(num1, num2);
+}
+
 int main(void)
 {
   int num1, num2, num3;
@@ -44,4 +51,5 @@ int main(void)
   printf("Enter two numbers for calculating G.C.D. and L.C.M. :\n");
   scanf("%d %d", &num2, &num3);
   printf("G.C.D. of %d and %d is %d \n", num2, num3, gcd(num2, num3));
+  printf("L.C.M. of %d and %d is %d \n", num2, num3, lcm(num2, num3));
 }
