@@ -25,13 +25,23 @@ long int cube(int number)
   return square(number) * number;
 }
 
+int gcd(int num1, int num2)
+{
+  if (num2 == 0)
+    return num1;
+  return gcd(num2, num1 % num2);
+}
+
 int main(void)
 {
-  int number;
+  int num1, num2, num3;
   printf("Enter a number :\n");
-  scanf("%d", &number);
-  printf("%d is %s\n", number, is_even(number) ? "even" : "not even");
-  printf("%d is %s\n", number, is_odd(number) ? "odd" : "not odd");
-  printf("Square of %d is %ld\n", number, square(number));
-  printf("Cube of %d is %ld\n", number, cube(number));
+  scanf("%d", &num1);
+  printf("%d is %s\n", num1, is_even(num1) ? "even" : "not even");
+  printf("%d is %s\n", num1, is_odd(num1) ? "odd" : "not odd");
+  printf("Square of %d is %ld\n", num1, square(num1));
+  printf("Cube of %d is %ld\n", num1, cube(num1));
+  printf("Enter two numbers for calculating G.C.D. and L.C.M. :\n");
+  scanf("%d %d", &num2, &num3);
+  printf("G.C.D. of %d and %d is %d \n", num2, num3, gcd(num2, num3));
 }
