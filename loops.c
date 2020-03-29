@@ -4,6 +4,7 @@ unsigned long int factorial(int);
 int fibonacci(int);
 unsigned char is_even(int);
 int print_odds(int);
+int print_evens(int);
 
 unsigned long int factorial(int number){
   unsigned long int fact = 1;
@@ -37,6 +38,14 @@ int print_odds(int lastNum){
   return 0;
 }
 
+int print_evens(int lastNum){
+  printf("Even numbers between %d and %d are :\n", 1, lastNum);
+  for(int num = 1; num <= lastNum; num++){
+   is_even(num) && printf("%d\n", num);
+  }
+  return 0;
+}
+
 
 int main(void){
   int num;
@@ -51,5 +60,9 @@ int main(void){
   printf("Enter a number to print odds from 1 to that number :\n");
   scanf("%d", &num);
   print_odds(num);
+
+  printf("Enter a number to print evens from 1 to that number :\n");
+  scanf("%d", &num);
+  print_evens(num);
   return 0;
 }
