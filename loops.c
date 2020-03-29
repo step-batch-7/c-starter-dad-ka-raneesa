@@ -9,6 +9,7 @@ int print_multiplication_table(int, int);
 long int add_numbers(int, int);
 long int multiply_numbers(int, int);
 int print_every_nth_number(int, int, int);
+long int add_evens(int, int);
 
 unsigned long int factorial(int number){
   unsigned long int fact = 1;
@@ -82,6 +83,14 @@ int print_every_nth_number(int firstNum, int lastNum, int step){
   return 0;
 }
 
+long int add_evens(int firstNum, int lastNum) {
+  long int sum = 0;
+  for(int num = firstNum; num <= lastNum; num++) {
+    is_even(num) && (sum += num);
+  }
+  return sum;
+}
+
 int main(void){
   int num, upto, step;
 
@@ -116,5 +125,9 @@ int main(void){
   printf("Enter start and ending of a series and step :\n");
   scanf("%d %d %d", &num, &upto, &step);
   print_every_nth_number(num, upto, step);
+
+  printf("Enter two numbers to print sum of evens in between :\n");
+  scanf("%d %d", &num, &upto);
+  printf("Sum of evens between %d and %d is %lu\n", num, upto, add_evens(num,upto));
   return 0;
 }
