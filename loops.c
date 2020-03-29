@@ -8,6 +8,7 @@ int print_evens(int);
 int print_multiplication_table(int, int);
 long int add_numbers(int, int);
 long int multiply_numbers(int, int);
+int print_every_nth_number(int, int, int);
 
 unsigned long int factorial(int number){
   unsigned long int fact = 1;
@@ -73,8 +74,17 @@ long int multiply_numbers(int firstNum, int lastNum){
   return product;
 }
 
+int print_every_nth_number(int firstNum, int lastNum, int step){
+  printf("\nEvery %dth number between %d and %d are :\n", step, firstNum, lastNum);
+  for(int num = firstNum; num <= lastNum; num += step) {
+    printf("%d\n", num);
+  }
+  return 0;
+}
+
 int main(void){
-  int num, upto;
+  int num, upto, step;
+
   printf("Enter a number to get factorial :\n");
   scanf("%d", &num);
   printf("%d factorial is %lu\n", num, factorial(num));
@@ -102,5 +112,9 @@ int main(void){
   printf("Enter two numbers to get product of numbers in between :\n");
   scanf("%d %d", &num, &upto);
   printf("Product of the numbers between %d and %d is %ld\n", num, upto, multiply_numbers(num, upto));
+
+  printf("Enter start and ending of a series and step :\n");
+  scanf("%d %d %d", &num, &upto, &step);
+  print_every_nth_number(num, upto, step);
   return 0;
 }
