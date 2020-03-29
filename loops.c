@@ -10,6 +10,7 @@ long int add_numbers(int, int);
 long int multiply_numbers(int, int);
 int print_every_nth_number(int, int, int);
 long int add_evens(int, int);
+int print_odds_backwards(int);
 
 unsigned long int factorial(int number){
   unsigned long int fact = 1;
@@ -36,7 +37,7 @@ unsigned char is_even(int number) {
 }
 
 int print_odds(int lastNum){
-  printf("Odd numbers between %d and %d are :\n", 1, lastNum);
+  printf("Odd numbers between 1 and %d are :\n", lastNum);
   for(int num = 1; num <= lastNum; num++){
    !is_even(num) && printf("%d\n", num);
   }
@@ -44,7 +45,7 @@ int print_odds(int lastNum){
 }
 
 int print_evens(int lastNum){
-  printf("Even numbers between %d and %d are :\n", 1, lastNum);
+  printf("Even numbers between 1 and %d are :\n", lastNum);
   for(int num = 1; num <= lastNum; num++){
    is_even(num) && printf("%d\n", num);
   }
@@ -76,7 +77,7 @@ long int multiply_numbers(int firstNum, int lastNum){
 }
 
 int print_every_nth_number(int firstNum, int lastNum, int step){
-  printf("\nEvery %dth number between %d and %d are :\n", step, firstNum, lastNum);
+  printf("Every %dth number between %d and %d are :\n", step, firstNum, lastNum);
   for(int num = firstNum; num <= lastNum; num += step) {
     printf("%d\n", num);
   }
@@ -89,6 +90,14 @@ long int add_evens(int firstNum, int lastNum) {
     is_even(num) && (sum += num);
   }
   return sum;
+}
+
+int print_odds_backwards(int startNum) {
+  printf("Odds between %d and 1 in reverse order are:\n", startNum);
+  for(int num = startNum; num >= 1; num--) {
+    !is_even(num) && printf("%d\n", num);
+  }
+  return 0;
 }
 
 int main(void){
@@ -129,5 +138,9 @@ int main(void){
   printf("Enter two numbers to print sum of evens in between :\n");
   scanf("%d %d", &num, &upto);
   printf("Sum of evens between %d and %d is %lu\n", num, upto, add_evens(num,upto));
+
+  printf("Enter starting number to print odds backwards upto 1 :\n");
+  scanf("%d", &num);
+  print_odds_backwards(num);
   return 0;
 }
