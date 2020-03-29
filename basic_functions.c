@@ -3,8 +3,8 @@
 
 unsigned char is_even(int);
 unsigned char is_odd(int);
-long int square(int);
-long int cube(int);
+double square(double);
+double cube(double);
 int gcd(int, int);
 int lcm(int, int);
 double simple_interest(double, double, double);
@@ -25,12 +25,12 @@ unsigned char is_odd(int number)
   return !is_even(number);
 }
 
-long int square(int number)
+double square(double number)
 {
   return number * number;
 }
 
-long int cube(int number)
+double cube(double number)
 {
   return square(number) * number;
 }
@@ -89,8 +89,10 @@ int main(void)
   scanf("%d", &num1);
   printf("%d is %s\n", num1, is_even(num1) ? "even" : "not even");
   printf("%d is %s\n", num1, is_odd(num1) ? "odd" : "not odd");
-  printf("Square of %d is %ld\n", num1, square(num1));
-  printf("Cube of %d is %ld\n", num1, cube(num1));
+  printf("Enter a number to calculate square and cube :\n");
+  scanf("%lf", &num4);
+  printf("Square of %lf is %lf\n", num4, square(num4));
+  printf("Cube of %lf is %lf\n", num4, cube(num4));
   printf("Enter two numbers for calculating G.C.D. and L.C.M. :\n");
   scanf("%d %d", &num2, &num3);
   printf("G.C.D. of %d and %d is %d \n", num2, num3, gcd(num2, num3));
