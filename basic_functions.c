@@ -112,7 +112,7 @@ int main(void)
   printf("Enter centigrade temperature to convert into fahrenheit :\n");
   scanf("%lf", &temperature);
   printf("fahrenheit of %f centigrade is %5.2lf\n", temperature, centigrade_to_fahrenheit(temperature));
-  
+
   printf("Enter three numbers to calculate greatest number and average of three :\n");
   scanf("%lf %lf %lf", &num4, &num5, &num6);
   printf("%lf is the greatest of %lf, %lf and %lf\n",greatest_of_three(num4, num5, num6), num4, num5, num6);
