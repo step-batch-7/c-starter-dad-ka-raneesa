@@ -1,32 +1,30 @@
 #include <stdio.h>
 
-int print_denominations(unsigned long int);
-unsigned long int print_note_count(unsigned long int, unsigned int);
+void currency_breakdown(unsigned long int, unsigned int *, unsigned int *, unsigned int);
 
-unsigned long int print_note_count(unsigned long int currency,  unsigned int denomination){
-  unsigned int count = currency/denomination;
-  count > 0 && printf("%u x Rs %u\n", count, denomination);
-  return currency % denomination;
+void currency_breakdown(unsigned long int currency, unsigned int *denominations, unsigned int *no_of_notes, unsigned int length)
+{
+  unsigned long int remaining_currency = currency;
+  unsigned int index;
+  for (index = 0; index < length; index++)
+  {
+    no_of_notes[index] = remaining_currency / denominations[index];
+    remaining_currency = remaining_currency % denominations[index];
+  }
 }
 
-int print_denominations(unsigned long int currency){
-  unsigned long int remaining_currency;
-  remaining_currency = print_note_count(currency,2000);
-  remaining_currency = print_note_count(remaining_currency,500);
-  remaining_currency = print_note_count(remaining_currency,200);
-  remaining_currency = print_note_count(remaining_currency,100);
-  remaining_currency = print_note_count(remaining_currency,50);
-  remaining_currency = print_note_count(remaining_currency,10);
-  remaining_currency = print_note_count(remaining_currency,5);
-  print_note_count(remaining_currency, 1);
-  return 0;
-}
-
-int main(void){
+int main(void)
+{
   unsigned long int currency;
+  unsigned int denominations[8] = {2000, 500, 200, 100, 50, 10, 5, 1};
+  unsigned int no_of_notes[8], index;
   printf("Enter money :\n");
   scanf("%lu", &currency);
-  printf("Amount is %lu\n", currency);
-  print_denominations(currency);
+  currency_breakdown(currency, denominations, no_of_notes, 8);
+  for (index = 0; index < 8; index++)
+  {
+    printf("%u x Rs %u\n", no_of_notes[index], denominations[index]);
+  }
+
   return 0;
 }
