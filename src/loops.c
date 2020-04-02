@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 unsigned long int factorial(int);
-int fibonacci(int);
+void get_fibonacci_series(int *, int);
 unsigned char is_even(int);
 void print_odds(int);
 void print_evens(int);
@@ -22,18 +22,16 @@ unsigned long int factorial(int number)
   return fact;
 }
 
-int fibonacci(int length)
+void get_fibonacci_series(int *fibonacci_series, int length)
 {
-  int first = 0, second = 1;
-  printf("Fibonacci series :\n");
-  for (int index = 1; index <= length; index++)
+  int term1 = 0, term2 = 1, sum, count;
+  for (count = 0; count < length; count++)
   {
-    printf("%d\n", first);
-    int temp = second;
-    second += first;
-    first = temp;
+    fibonacci_series[count] = term1;
+    sum = term1 + term2;
+    term1 = term2;
+    term2 = sum;
   }
-  return 0;
 }
 
 unsigned char is_even(int number)
@@ -46,7 +44,7 @@ void print_odds(int lastNum)
   printf("Odd numbers between 1 and %d are :\n", lastNum);
   for (int num = 1; num <= lastNum; num++)
   {
-    !is_even(num) && printf("%d\n", num);
+    !is_even(num) && printf("%d  ", num);
   }
 }
 
@@ -55,7 +53,7 @@ void print_evens(int lastNum)
   printf("Even numbers between 1 and %d are :\n", lastNum);
   for (int num = 1; num <= lastNum; num++)
   {
-    is_even(num) && printf("%d\n", num);
+    is_even(num) && printf("%d  ", num);
   }
 }
 
@@ -93,7 +91,7 @@ void print_every_nth_number(int firstNum, int lastNum, int step)
   printf("Every %dth number between %d and %d are :\n", step, firstNum, lastNum);
   for (int num = firstNum; num <= lastNum; num += step)
   {
-    printf("%d\n", num);
+    printf("%d  ", num);
   }
 }
 
@@ -112,7 +110,16 @@ void print_odds_backwards(int startNum)
   printf("Odds between %d and 1 in reverse order are:\n", startNum);
   for (int num = startNum; num >= 1; num--)
   {
-    !is_even(num) && printf("%d\n", num);
+    !is_even(num) && printf("%d  ", num);
+  }
+}
+
+void print_int_array(int *array, unsigned length)
+{
+  int index;
+  for (index = 0; index < length; index++)
+  {
+    printf("%d  ", array[index]);
   }
 }
 
@@ -126,15 +133,20 @@ int main(void)
 
   printf("Enter a number to get fibonacci series :\n");
   scanf("%d", &num);
-  fibonacci(num);
+  int fibonacci_series[num];
+  get_fibonacci_series(fibonacci_series, num);
+  print_int_array(fibonacci_series, num);
+  printf("\n");
 
   printf("Enter a number to print odds from 1 to that number :\n");
   scanf("%d", &upto);
   print_odds(upto);
+  printf("\n");
 
   printf("Enter a number to print evens from 1 to that number :\n");
   scanf("%d", &upto);
   print_evens(upto);
+  printf("\n");
 
   printf("Enter two numbers to get multiplication table :\n");
   scanf("%d %d", &num, &upto);
@@ -151,6 +163,7 @@ int main(void)
   printf("Enter start and ending of a series and step :\n");
   scanf("%d %d %d", &num, &upto, &step);
   print_every_nth_number(num, upto, step);
+  printf("\n");
 
   printf("Enter two numbers to print sum of evens in between :\n");
   scanf("%d %d", &num, &upto);
@@ -159,5 +172,7 @@ int main(void)
   printf("Enter starting number to print odds backwards upto 1 :\n");
   scanf("%d", &num);
   print_odds_backwards(num);
+  printf("\n");
+
   return 0;
 }
